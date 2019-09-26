@@ -32,9 +32,14 @@ def create_ec2_instance(image_id, instance_type, keypair_name):
     # Provision and launch the EC2 instance
     ec2_client = boto3.client('ec2')
     try:
-        response = ec2_client.run_instances(ImageId=image_id,
+        response = ec2_client.run_instances(LaunchTemplate={
+            'LaunchTemplateId': 'lt-07c48a5b377417c2e'},
+                                            ImageId=image_id,
                                             InstanceType=instance_type,
                                             KeyName=keypair_name,
+                                            SecurityGroups=[
+                                                'launch-wizard-3'
+                                                ],
                                             MinCount=1,
                                             MaxCount=1)
     except ClientError as e:
@@ -50,8 +55,8 @@ def main():
     image_id = 'ami-09c61c4850b7465cb'
     instance_type = 't2.micro'
     keypair_name = 'yahoo-key'
-    security_group = create_security_group.main()
-    print(security_group)
+    #security_group = create_security_group.main()
+    #print(security_group)
     # Set up logging
     logging.basicConfig(level=logging.DEBUG,
                         format='%(levelname)s: %(asctime)s: %(message)s')
