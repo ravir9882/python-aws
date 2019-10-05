@@ -1,0 +1,8 @@
+---
+- name: Create EC2 instance
+  ec2:
+        region: us-east-2
+        instance_type: t2.micro 
+        image: ami-00c03f7f7f2ec15c3 
+        wait: yes
+...
