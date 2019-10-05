@@ -1,0 +1,11 @@
+---
+# tasks file for ec2
+- ec2:
+        region: us-east-1
+        key_name: yahoo-key
+        instance_type: t2.micro
+        image: ami-09c61c4850b7465cb
+        wait: yes
+        vpc_subnet_id: subnet-84f5e3ce
+        assign_public_ip: yes
+        group: my_ec2_admin_group

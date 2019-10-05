@@ -1,0 +1,8 @@
+---
+## This will invoke EC2 role
+#
+- hosts: localhost
+  connection: local
+  roles:
+          - role: ec2
+...
